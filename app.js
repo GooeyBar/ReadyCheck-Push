@@ -48,7 +48,7 @@ function sendNotificationToUser(username, message, onSuccess) {
       notification: {
         title: message
       },
-      to : '/topics/user_'+username
+      to : '/topics/'+username
     })
   }, function(error, response, body) {
     if (error) { console.error(error); }
