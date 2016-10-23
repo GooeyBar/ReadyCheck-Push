@@ -25,8 +25,10 @@ ref = firebase.database().ref();
 function listenForNotificationRequests() {
   console.log("listening to not req");  
   var requests = ref.child('notificationRequests');
+  console.log("requests obj created");
   requests.on('child_added', function(requestSnapshot) {
     var request = requestSnapshot.val();
+    console.log("listener registered to child added event");
     sendNotificationToUser(
       request.username, 
       request.message,
@@ -36,6 +38,8 @@ function listenForNotificationRequests() {
     );
   }, function(error) {
     console.error(error);
+    console.log("error!");
+    console.log(error);
   });
 };
 
