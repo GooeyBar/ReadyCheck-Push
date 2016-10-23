@@ -1,0 +1,16 @@
+{
+  "name": "readycheck-push",
+  "version": "4.6.1",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GooeyBar/ReadyCheck-Push.git"
+  },
+  "author": "gooeybar",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "firebase": "^3.5.1",
+    "request": "^2.75.0"
+  }
+}
