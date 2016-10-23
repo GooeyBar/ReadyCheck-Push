@@ -1,7 +1,9 @@
 var firebase = require('firebase');
 var request = require('request');
-
+var http = require('http');
+//require('dotenv').config();
 var API_KEY = process.env.API_KEY; // Your Firebase Cloud Server API key
+var PORT = process.env.PORT || 5000
 
 firebase.initializeApp({
   serviceAccount: {
@@ -21,6 +23,7 @@ firebase.initializeApp({
 ref = firebase.database().ref();
 
 function listenForNotificationRequests() {
+  console.log("listening to not req");  
   var requests = ref.child('notificationRequests');
   requests.on('child_added', function(requestSnapshot) {
     var request = requestSnapshot.val();
@@ -61,4 +64,16 @@ function sendNotificationToUser(username, message, onSuccess) {
   });
 }
 
-listenForNotificationRequests();
+function handleRequest(request, response){
+    response.end('Path Hit: ' + request.url);
+}
+
+//Create a server
+var server = http.createServer(handleRequest);
+
+//Lets start our server
+server.listen(PORT, function(){
+    //Callback triggered when server is successfully listening. Hurray!
+    console.log("Server listening on: http://localhost:%s", PORT);
+    listenForNotificationRequests();
+});
