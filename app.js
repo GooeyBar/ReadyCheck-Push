@@ -1,14 +1,14 @@
 var firebase = require('firebase');
 var request = require('request');
 
-var API_KEY = ENV['API_KEY']; // Your Firebase Cloud Server API key
+var API_KEY = process.env.API_KEY; // Your Firebase Cloud Server API key
 
 firebase.initializeApp({
   serviceAccount: {
     "type": "service_account",
     "project_id": "readycheck-24872",
-    "private_key_id": ENV['PRIVATE_KEY_ID'],
-    "private_key": ENV['PRIVATE_KEY'],
+    "private_key_id": process.env.PRIVATE_KEY_ID,
+    "private_key": process.env.PRIVATE_KEY,
     "client_email": "gooeybar@readycheck-24872.iam.gserviceaccount.com",
     "client_id": "117959324550917030473",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
