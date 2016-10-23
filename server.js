@@ -76,5 +76,8 @@ var server = http.createServer(handleRequest);
 server.listen(PORT, function(){
     //Callback triggered when server is successfully listening. Hurray!
     console.log("Server listening on: http://localhost:%s", PORT);
+    console.log("API KEY " +  API_KEY);
+    console.log("PRIVATE_KEY_ID " + process.env.PRIVATE_KEY_ID);
+    console.log("PRIVATE_KEY " + process.env.PRIVATE_KEY);
     listenForNotificationRequests();
 });
