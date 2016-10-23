@@ -40,6 +40,7 @@ function listenForNotificationRequests() {
 };
 
 function sendNotificationToUser(username, message, onSuccess) {
+  console.log("sending notification " + message + " to group " + username);
   request({
     url: 'https://fcm.googleapis.com/fcm/send',
     method: 'POST',
