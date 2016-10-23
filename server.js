@@ -26,6 +26,9 @@ function listenForNotificationRequests() {
   console.log("listening to not req");  
   var requests = ref.child('notificationRequests');
   console.log("requests obj created");
+  console.log(ref);
+  console.log("\n");
+  console.log(requests);
   requests.on('child_added', function(requestSnapshot) {
     var request = requestSnapshot.val();
     console.log("listener registered to child added event");
