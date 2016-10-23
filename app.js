@@ -1,7 +1,7 @@
 var firebase = require('firebase');
 var request = require('request');
-
-var API_KEY = ENV['API_KEY']; // Your Firebase Cloud Server API key
+require('dotenv').config();
+var API_KEY = process.env.API_KEY; // Your Firebase Cloud Server API key
 
 firebase.initializeApp({
   serviceAccount: "ReadyCheck-98fcd0c0a273.json",
