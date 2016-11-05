@@ -1,8 +1,8 @@
 var firebase = require('firebase');
 var request = require('request');
 var http = require('http');
-//require('dotenv').config();
-var API_KEY = process.env.API_KEY; // Your Firebase Cloud Server API key
+if(!process.env.API_KEY){require('dotenv').config();}
+var API_KEY = process.env.API_KEY;
 var PORT = process.env.PORT || 5000
 
 firebase.initializeApp({
@@ -26,9 +26,6 @@ function listenForNotificationRequests() {
   console.log("listening to not req");  
   var requests = ref.child('notificationRequests');
   console.log("requests obj created");
-  console.log(ref);
-  console.log("\n");
-  console.log(requests);
   requests.on('child_added', function(requestSnapshot) {
     var request = requestSnapshot.val();
     console.log("listener registered to child added event");
@@ -40,7 +37,6 @@ function listenForNotificationRequests() {
       }
     );
   }, function(error) {
-    console.error(error);
     console.log("error!");
     console.log(error);
   });
@@ -76,15 +72,13 @@ function handleRequest(request, response){
     response.end('Path Hit: ' + request.url);
 }
 
-//Create a server
 var server = http.createServer(handleRequest);
 
-//Lets start our server
 server.listen(PORT, function(){
-    //Callback triggered when server is successfully listening. Hurray!
     console.log("Server listening on: http://localhost:%s", PORT);
     console.log("API KEY " +  API_KEY);
     console.log("PRIVATE_KEY_ID " + process.env.PRIVATE_KEY_ID);
-    console.log("PRIVATE_KEY " + process.env.PRIVATE_KEY);
+    console.log("PRIVATE_KEY:");
+    console.log(process.env.PRIVATE_KEY != "");
     listenForNotificationRequests();
 });
